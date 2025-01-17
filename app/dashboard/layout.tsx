@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
-import { NavigationProvider } from "@/lib/context/navigation";
-import { Authenticated } from "convex/react";
+import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
+import { NavigationProvider } from '@/lib/context/navigation';
+import { Authenticated } from 'convex/react';
 
 export default function DashboardLayout({
   children,

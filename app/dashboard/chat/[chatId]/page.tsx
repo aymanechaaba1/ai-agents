@@ -1,14 +1,14 @@
-import ChatInterface from "@/components/ChatInterface";
-import { Id } from "@/convex/_generated/dataModel";
-import { api } from "@/convex/_generated/api";
-import { getConvexClient } from "@/lib/convex";
-import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
+import ChatInterface from '@/components/ChatInterface';
+import { Id } from '@/convex/_generated/dataModel';
+import { api } from '@/convex/_generated/api';
+import { getConvexClient } from '@/lib/convex';
+import { redirect } from 'next/navigation';
+import { auth } from '@clerk/nextjs/server';
 
 interface ChatPageProps {
-  params: {
-    chatId: Id<"chats">;
-  };
+  params: Promise<{
+    chatId: Id<'chats'>;
+  }>;
 }
 
 export default async function ChatPage({ params }: ChatPageProps) {
@@ -18,7 +18,7 @@ export default async function ChatPage({ params }: ChatPageProps) {
   const { userId } = await auth();
 
   if (!userId) {
-    redirect("/");
+    redirect('/');
   }
 
   try {
@@ -33,9 +33,9 @@ export default async function ChatPage({ params }: ChatPageProps) {
 
     if (!chat) {
       console.log(
-        "⚠️ Chat not found or unauthorized, redirecting to dashboard"
+        '⚠️ Chat not found or unauthorized, redirecting to dashboard'
       );
-      redirect("/dashboard");
+      redirect('/dashboard');
     }
 
     // Get messages
@@ -47,7 +47,7 @@ export default async function ChatPage({ params }: ChatPageProps) {
       </div>
     );
   } catch (error) {
-    console.error("🔥 Error loading chat:", error);
-    redirect("/dashboard");
+    console.error('🔥 Error loading chat:', error);
+    redirect('/dashboard');
   }
 }
